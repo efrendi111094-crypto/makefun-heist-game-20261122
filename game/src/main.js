@@ -60,6 +60,7 @@ export class Game {
     this.lastResult = null;
     this.bustedReason = '';
     this.stepTimer = 0;
+    this.lockpickTickTimer = 0;
     this.rng = makeRng(7);
     this._lockdownSeen = 0;
   }
@@ -229,7 +230,13 @@ export class Game {
     const nearVault = dist(p.x, p.y, v.x + TILE / 2, v.y + TILE / 2) < 56;
     if (nearVault && !v.cracked && this.input.down('interact')) {
       p.lockpickProgress += dt / LOCKPICK_SECONDS;
-      if (Math.random() < dt * 6) this.sfx.lockpickTick(p.lockpickProgress);
+      // Deterministic tick: a fixed timer, never Math.random, so a staged
+      // screenshot and a live play of the same seed sound the same.
+      this.lockpickTickTimer -= dt;
+      if (this.lockpickTickTimer <= 0) {
+        this.lockpickTickTimer = 0.18;
+        this.sfx.lockpickTick(p.lockpickProgress);
+      }
       if (p.lockpickProgress >= 1) {
         v.cracked = true;
         this.lootCollected += v.value;

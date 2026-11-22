@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Midnight Vault — 5 heists, 13 guards, cones, cameras and one getaway van</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; background: #07090f; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  #wrap { width: min(1120px, 100vw); }
+  canvas {
+    display: block; width: 100%; height: auto;
+    background: #1c2433; image-rendering: auto;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+  }
+  #hint {
+    color: #9aa7bd; font-size: 12px; text-align: center;
+    padding: 8px 0 0; margin: 0;
+  }
+  #hint b { color: #eef2f8; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="game" width="1120" height="720"></canvas>
+  <p id="hint"><b>WASD / arrows</b> move &nbsp;·&nbsp; <b>Shift</b> sneak &nbsp;·&nbsp; <b>Q</b> smoke &nbsp;·&nbsp; <b>R</b> EMP &nbsp;·&nbsp; hold <b>E</b> by the vault &nbsp;·&nbsp; click floor to walk &nbsp;·&nbsp; <b>P</b> pause &nbsp;·&nbsp; <b>M</b> mute</p>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
